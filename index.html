@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMOB</title>
+    <link rel="stylesheet" href="/styles-pages.css"> <!-- Link para o arquivo CSS externo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,300;1,500&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script> <!-- Link para o arquivo JavaScript externo -->
+    <link rel="icon" href="imob.png" type="image/x-icon">
+    <script>
+        // Redireciona para a página de login ao carregar o index.html
+        window.location.href = "login.html";
+    </script>
+</head>
+
+<body>
+    <!-- Conteúdo da página (não será exibido devido ao redirecionamento) -->
+    <!-- Contêiner principal da página -->
+    <div class="main-container">
+        <!-- Cabeçalho com imagem principal -->
+        <div class="header">
+            <img src="predio.jpg" alt="predio" class="main-image">
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="action-buttons">
+            <button class="action-button"><a class="recarregar-principal" href="recarregar.html">Recarregar</a></button>
+            <button class="action-button"><a class="retirada-principal" href="retirada.html">Retirada</a></button>
+            <button class="action-button"><a href="https://t.me/+acUflvhEAC4wYmUx" target="_blank" style="text-decoration: none; color: inherit;">Ajuda</a></button>
+            <button class="action-button" onclick="realizarCheckinDiario()">Check-in diário</button>
+        </div>
+
+        <!-- Notificação de recarga dinâmica com animação -->
+        <div id="rechargeNotification" class="notification">
+            <!-- Conteúdo será atualizado dinamicamente pelo JavaScript -->
+        </div>
+
+        <!-- Cartão de saldo -->
+        <div class="balance-card">
+            <div class="balance-info">
+                <p>Saldo da conta</p>
+                <h2 id="saldo">R$ 0,00</h2>
+            </div>
+            <div class="balance-info">
+                <p>Renda de hoje</p>
+                <h2>R$ 0,00</h2>
+            </div>
+            <div class="balance-info">
+                <p>Renda acumulada</p>
+                <h2>R$ 0,00</h2>
+            </div>
+        </div>
+
+        <!-- Menu de navegação no rodapé -->
+        <div class="footer-nav">
+            <div class="nav-item active"><a href="index.html">🏠 Lar</a></div>
+            <div class="nav-item active"><a href="produto.html">📦 Produto</a></div>
+            <div class="nav-item active"><a href="equipe.html">👥 Equipe</a></div>
+            <div class="nav-item active"><a href="menu.html">📋 Menu</a></div>
+        </div>
+    </div>
+
+    <script>
+        // Função para realizar o check-in diário
+        function realizarCheckinDiario() {
+            const hoje = new Date().toDateString(); // Data de hoje em formato string
+            const ultimoCheckin = localStorage.getItem('ultimoCheckin'); // Pega o último check-in salvo
+            let saldoAtual = parseFloat(localStorage.getItem('saldo')) || 0; // Pega o saldo atual ou define como 0
+
+            if (ultimoCheckin === hoje) {
+                alert("Você já realizou o check-in diário hoje.");
+            } else {
+                localStorage.setItem('ultimoCheckin', hoje); // Salva a data do check-in de hoje
+                saldoAtual += 1; // Adiciona 1 real ao saldo
+                localStorage.setItem('saldo', saldoAtual); // Salva o novo saldo no localStorage
+                alert("Check-in diário realizado! Você ganhou R$ 1,00.");
+                atualizarSaldo();
+            }
+        }
+
+        // Função para atualizar o saldo na interface
+        function atualizarSaldo() {
+            const saldoAtual = parseFloat(localStorage.getItem('saldo')) || 0;
+            document.getElementById('saldo').textContent = `R$ ${saldoAtual.toFixed(2)}`;
+        }
+
+        // Atualiza o saldo ao carregar a página
+        window.onload = atualizarSaldo;
+    </script>
+</body>
+
+</html>

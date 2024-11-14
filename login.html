@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-registro-login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <title>IMOB</title>
+    <link rel="icon" href="imob.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <h1>Entrar na Plataforma</h1>
+            <div class="input-container">
+                <span class="phone-prefix">+55</span>
+                <input id="login-phone" placeholder="Número de Telefone" type="tel" required>
+                <img width="20" height="20" src="https://img.icons8.com/ios/50/phone.png" alt="phone-icon" />
+            </div>
+            <div class="input-container">
+                <input placeholder="Senha" type="password" required>
+                <img width="20" height="20" src="https://img.icons8.com/ios/50/lock-2.png" alt="lock-2" />
+                <a href="#">Esqueci minha senha</a>
+            </div>
+
+            <!-- Elemento reCAPTCHA -->
+            <div id="recaptcha-container"></div>
+
+            <button type="submit" class="submit-button">Entrar</button>
+
+            <div class="register-link">
+                <p>Não está cadastrado? <a href="registro.html">Cadastrar</a></p>
+            </div>
+        </form>
+    </div>
+
+    <!-- Firebase Config Import -->
+    <script src="firebaseConfig.js"></script>
+    <!-- Your existing script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMOB</title>
+    <link rel="stylesheet" href="styles-pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap"
+        rel="stylesheet">
+        <link rel="icon" href="imob.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="team-main-container">
+        <!-- Cabeçalho com botão voltar -->
+        <div class="team-header">
+            <span class="team-back-arrow" onclick="window.history.back()">← Voltar</span>
+            <h1 class="team-title">Equipe</h1>
+        </div>
+
+        <!-- Código de Convite -->
+        <div class="invite-container">
+            <p>Código de convite</p>
+            <div class="invite-box">
+                <input type="text" id="inviteCode" readonly>
+                <button class="copy-button" onclick="copyToClipboard('inviteCode')">Cópia</button>
+            </div>
+        </div>
+
+        <!-- Link de Convite -->
+        <div class="invite-container">
+            <p>Link de convite</p>
+            <div class="invite-box">
+                <input type="text" id="inviteLink" readonly>
+                <button class="copy-button" onclick="copyToClipboard('inviteLink')">Cópia</button>
+            </div>
+        </div>
+
+        <!-- Níveis e Comissões -->
+        <div class="level-box">
+            <p>LV1</p>
+            <p>37% Taxa de comissão</p>
+            <p>Usuário válido: 0</p>
+            <p>Bônus: 0</p>
+        </div>
+        <div class="level-box">
+            <p>LV2</p>
+            <p>1% Taxa de comissão</p>
+            <p>Usuário válido: 0</p>
+            <p>Bônus: 0</p>
+        </div>
+        <div class="level-box">
+            <p>LV3</p>
+            <p>1% Taxa de comissão</p>
+            <p>Usuário válido: 0</p>
+            <p>Bônus: 0</p>
+        </div>
+
+        <!-- Resumo de Convites -->
+        <div class="summary-container">
+            <p>Total de pessoas</p>
+            <h2>0</h2>
+            <p>Recompensas totais</p>
+            <h2>R$ 0,00</h2>
+        </div>
+
+        <!-- Prêmios de Convite -->
+        <div class="invite-prizes">
+            <h3>Prêmios de convite</h3>
+            <p>Quando o amigo que você convidar se cadastrar e concluir o primeiro investimento, você receberá diretamente uma recompensa em dinheiro de 37% do valor do investimento do seu amigo.</p>
+            <p>Quando o membro da sua equipe de nível 2 investir, você receberá um bônus em dinheiro de 1% do valor investido.</p>
+            <p>Quando o membro da sua equipe de nível 3 investir, você receberá um bônus em dinheiro de 1% do valor investido.</p>
+            <p>As recompensas em dinheiro serão enviadas para o saldo da sua conta imediatamente após os membros da sua equipe investirem e podem ser sacadas diretamente.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

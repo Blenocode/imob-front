@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMOB</title>
+    <link rel="stylesheet" href="/styles-pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap"
+        rel="stylesheet">
+        <link rel="icon" href="imob.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Cabeçalho com seta de voltar -->
+        <div class="header">
+            <span class="back-arrow" onclick="window.history.back()">←</span>
+            <h1 class="page-title">Recarregar</h1>
+        </div>
+
+        <!-- Saldo Disponível -->
+        <div class="saldo-container">
+            <p>Saldo da conta</p>
+            <h2>R$ 5,00</h2>
+        </div>
+
+        <!-- Seleção de Valor de Depósito -->
+        <div class="valor-container">
+            <button class="valor-button" onclick="selectValue(80)">80</button>
+            <button class="valor-button" onclick="selectValue(240)">240</button>
+            <button class="valor-button" onclick="selectValue(600)">600</button>
+            <button class="valor-button" onclick="selectValue(1300)">1300</button>
+            <button class="valor-button" onclick="selectValue(3000)">3000</button>
+            <button class="valor-button" onclick="selectValue(5000)">5000</button>
+            <button class="valor-button" onclick="selectValue(10000)">10000</button>
+            <button class="valor-button" onclick="selectValue(15000)">15000</button>
+        </div>
+
+        <!-- Valor Selecionado -->
+        <div class="input-container">
+            <input id="valor-deposito" type="text" placeholder="R$ 0" oninput="formatCurrency(this)">
+        </div>
+
+        <!-- Método de Pagamento -->
+        <div class="input-container">
+            <label>
+                <input type="radio" name="metodo" checked>
+                PIX
+            </label>
+        </div>
+
+        <!-- Botão de Envio -->
+        <button class="submit-button" onclick="gerarQRCode()">Enviar</button>
+
+        <!-- Área para QR Code e Chave PIX -->
+        <div id="qrcode-container" class="qrcode-container" style="display: none;">
+            <h3>Use o QR Code ou a Chave PIX para realizar o pagamento:</h3>
+            <div id="qrcode"></div>
+            <p class="pix-key">Chave PIX: <span id="pix-key"></span></p>
+        </div>
+    </div>
+
+    <!-- Incluindo o JavaScript diretamente no arquivo HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> <!-- Biblioteca para gerar QR Code -->
+
+    <script>
+        // Função para formatar o valor em reais
+        function formatCurrency(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = (parseInt(value) / 100).toFixed(2);
+            input.value = `R$ ${value.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+        }
+
+        // Função para preencher o campo de valor automaticamente ao clicar nos botões
+        function selectValue(value) {
+            const valorDepositoInput = document.getElementById('valor-deposito');
+            valorDepositoInput.value = `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+        }
+
+        // Função para gerar o QR Code e a chave PIX
+        function gerarQRCode() {
+            const valorInput = document.getElementById('valor-deposito').value.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+
+            if (valorInput === "" || parseFloat(valorInput) === 0) {
+                alert("Por favor, selecione ou insira um valor para o depósito.");
+                return;
+            }
+
+            document.getElementById('qrcode-container').style.display = 'block';
+
+            const chavePix = "123e4567-e89b-12d3-a456-426614174000";
+            document.getElementById('pix-key').innerText = chavePix;
+
+            document.getElementById('qrcode').innerHTML = "";
+            const qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: `pix:${chavePix}?valor=${valorInput}`,
+                width: 128,
+                height: 128
+            });
+        }
+
+    </script>
+</body>
+
+</html>

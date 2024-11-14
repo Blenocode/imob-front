@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMOB</title>
+    <link rel="stylesheet" href="/styles-pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap"
+        rel="stylesheet">
+        <link rel="icon" href="imob.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Cabeçalho com seta de voltar -->
+        <div class="header">
+            <span class="back-arrow" onclick="window.history.back()">←</span>
+            <h1 class="page-title">Retirada de Saque</h1>
+        </div>
+
+        <!-- Saldo Disponível -->
+        <div class="saldo-container">
+            <p>Saldo disponível</p>
+            <h2>R$ 5,00</h2>
+        </div>
+
+        <!-- Opções de Saque -->
+        <div class="saque-options">
+            <label class="option-label">Escolha o tipo de saque:</label>
+            <div class="options">
+                <button class="saque-option-button" onclick="selectOption('cpf')">Via Pix - CPF</button>
+                <button class="saque-option-button" onclick="selectOption('telefone')">Via Pix - Telefone</button>
+            </div>
+        </div>
+
+        <!-- Informações de Saque - CPF -->
+        <div id="saque-info-cpf" class="saque-info" style="display: none;">
+            <div class="input-container">
+                <label for="cpf">CPF do destinatário</label>
+                <input id="cpf" type="text" placeholder="Digite o CPF" required>
+            </div>
+            <div class="input-container">
+                <label for="nome-cpf">Nome do destinatário</label>
+                <input id="nome-cpf" type="text" placeholder="Digite o nome completo" required>
+            </div>
+        </div>
+
+        <!-- Informações de Saque - Telefone -->
+        <div id="saque-info-telefone" class="saque-info" style="display: none;">
+            <div class="input-container">
+                <label for="telefone">Telefone do destinatário</label>
+                <input id="telefone" type="text" placeholder="Digite o número de telefone" required>
+            </div>
+            <div class="input-container">
+                <label for="nome-telefone">Nome do destinatário</label>
+                <input id="nome-telefone" type="text" placeholder="Digite o nome completo" required>
+            </div>
+        </div>
+
+        <!-- Valor de Retirada -->
+        <div class="input-container">
+            <label for="valor-retirada">Valor de retirada</label>
+            <input id="valor-retirada" type="number" placeholder="Insira o valor da retirada" min="30" max="5000" required>
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button class="submit-button">Submeter</button>
+
+        <!-- Regras de Retirada -->
+        <div class="regras-retirada">
+            <h3>Regras de retirada</h3>
+            <p>1. Limite único de saque: R$ 30 ~ R$ 5.000</p>
+            <p>2. Horário de saque: segunda a sexta, das 9h às 17h</p>
+            <p>3. De acordo com a política tributária brasileira, os saques estão sujeitos a 10% de imposto.</p>
+            <p>4. Os fundos chegarão dentro de 1 a 24 horas após a retirada, dependendo da velocidade de processamento do banco.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

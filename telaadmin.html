@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Solicitações de Retirada</title>
+    
+    <!-- Estilos CSS embutidos -->
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .admin-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .withdrawal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .withdrawal-table th, .withdrawal-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .withdrawal-table th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .withdrawal-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .withdrawal-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button.approve {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button.reject {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button.approve:hover {
+            background-color: #45a049;
+        }
+
+        button.reject:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrutura HTML -->
+    <div class="admin-container">
+        <h1>Administração - Solicitações de Retirada</h1>
+        
+        <!-- Tabela de Solicitações -->
+        <table class="withdrawal-table">
+            <thead>
+                <tr>
+                    <th>ID da Solicitação</th>
+                    <th>Usuário</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="withdrawal-requests">
+                <!-- Solicitações de retirada serão inseridas aqui via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- JavaScript embutido -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadWithdrawalRequests();
+        });
+
+        function loadWithdrawalRequests() {
+            // Simulação de dados; em um cenário real, esses dados viriam de uma API
+            const requests = [
+                { id: 1, user: 'Usuário1', amount: 'R$ 100,00', date: '2024-11-06', status: 'Pendente' },
+                { id: 2, user: 'Usuário2', amount: 'R$ 200,00', date: '2024-11-07', status: 'Pendente' },
+                { id: 3, user: 'Usuário3', amount: 'R$ 150,00', date: '2024-11-08', status: 'Pendente' },
+            ];
+
+            const tableBody = document.getElementById('withdrawal-requests');
+            tableBody.innerHTML = ""; // Limpa a tabela antes de carregar os dados
+
+            requests.forEach(request => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${request.id}</td>
+                    <td>${request.user}</td>
+                    <td>${request.amount}</td>
+                    <td>${request.date}</td>
+                    <td>${request.status}</td>
+                    <td>
+                        <button class="approve" onclick="updateRequestStatus(${request.id}, 'approved')">Aprovar</button>
+                        <button class="reject" onclick="updateRequestStatus(${request.id}, 'rejected')">Rejeitar</button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateRequestStatus(id, status) {
+            // Em um cenário real, enviaríamos essa atualização para o servidor com uma requisição fetch
+            alert(`Solicitação ${id} ${status === 'approved' ? 'aprovada' : 'rejeitada'} com sucesso!`);
+
+            // Atualiza a interface para refletir a mudança de status
+            const row = document.querySelector(`#withdrawal-requests tr:nth-child(${id}) td:nth-child(5)`);
+            if (row) row.textContent = status === 'approved' ? 'Aprovado' : 'Rejeitado';
+        }
+    </script>
+</body>
+</html>

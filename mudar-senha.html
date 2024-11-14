@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudar Senha - IMOB</title>
+    <link rel="stylesheet" href="/styles-pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500&display=swap" rel="stylesheet">
+    <link rel="icon" href="imob.png" type="image/x-icon">
+</head>
+<body>
+    <div class="change-password-container">
+        <!-- Cabeçalho com botão de voltar -->
+        <div class="header">
+            <span class="back-arrow" onclick="window.history.back()">← Voltar</span>
+            <h1>Mudar Senha</h1>
+        </div>
+
+        <!-- Formulário de mudança de senha -->
+        <form id="changePasswordForm" onsubmit="handleChangePassword(event)">
+            <label for="currentPassword">Senha atual:</label>
+            <input type="password" id="currentPassword" required>
+
+            <label for="newPassword">Nova senha:</label>
+            <input type="password" id="newPassword" required>
+
+            <label for="confirmPassword">Confirme a nova senha:</label>
+            <input type="password" id="confirmPassword" required>
+
+            <button type="submit" class="submit-button">Confirmar</button>
+        </form>
+    </div>
+
+    <script>
+        // Função para processar a mudança de senha
+        function handleChangePassword(event) {
+            event.preventDefault(); // Evita o envio do formulário
+
+            // Captura os valores dos campos
+            const currentPassword = document.getElementById("currentPassword").value;
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Verifica se a nova senha e a confirmação coincidem
+            if (newPassword !== confirmPassword) {
+                alert("A nova senha e a confirmação não coincidem.");
+                return;
+            }
+
+            // Aqui você pode adicionar a lógica para enviar os dados ao backend ou API
+            // Temporariamente, vamos simular uma resposta
+            alert("Senha alterada com sucesso!");
+
+            // Redireciona o usuário de volta à página principal do menu
+            window.location.href = "menu.html";
+        }
+    </script>
+</body>
+</html>
